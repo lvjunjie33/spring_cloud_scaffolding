@@ -1,0 +1,36 @@
+server:
+  port: 8061
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server-one:8761/eureka/
+spring:
+  application:
+    name: config-server
+  rabbitmq:
+    host: 192.168.113.15
+    port: 5672
+    virtualHost: /spring_cloud_test
+    username: spring-cloud
+    password: 3nodcomcn
+  profiles:
+    #本地配置文件
+    active: 
+      #配置文件本地化
+      - native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:config/,classpath:config/provider-model/
+
+management:
+    endpoints:
+      web:
+        exposure:
+          include: refresh,health,info,bus-refresh #开放出去的端口
+          
+          #配置文件刷新接口
+          #2.0版本之后使用http://localhost:8061/actuator/bus-refresh
+          #2.0版本之前使用http://localhost:8061/bus/refresh
+          #pom文件中一定记得加上spring-boot-starter-actuator

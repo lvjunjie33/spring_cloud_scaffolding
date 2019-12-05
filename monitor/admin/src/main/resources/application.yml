@@ -1,0 +1,54 @@
+server:
+  port: 8022
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server-one:8761/eureka/
+
+spring:
+  application:
+    name: admin
+  rabbitmq:
+    host: 192.168.113.15
+    port: 5672
+    virtualHost: /vh_test
+    username: admin
+    password: admin
+  redis:
+    host: 192.168.113.15
+    port: 6379
+    password: 0098a9c3caee7c545b36a521aaa7eef4@3nod
+  boot:
+    admin:
+      url: http://${BOOT_ADMIN_HOST:localhost}:${BOOT_ADMIN_PORT:8022}
+      client:
+        username: admin
+        password: 123456
+      routes:
+        endpoints: env,metrics,dump,hystrix.stream,turbine.stream,info,configprops,trace,logfile,refresh,heapdump,loggers,auditevents
+      turbine:
+        enabled: true
+        clusters: default
+        location: http://host1:8031/turbine.stream
+  zipkin:
+    baseUrl: http://localhost:9411
+  security:
+    user:
+      name: admin
+      password: 123456
+
+logging:
+  level:
+    org.springframework.web: debug
+    org.springframework.security: DEBUG
+  path: logs/
+  file:
+    max-size: 1GB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+

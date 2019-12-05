@@ -1,0 +1,7 @@
+server:
+  port: 8021
+spring:
+  application:
+    name: Service-hystrix-dashboard
+    #http://localhost:8443/producer/actuator/hystrix.stream 单体服务器
+    #http://localhost:8443/producer/turbine.stream 默认集群服务器

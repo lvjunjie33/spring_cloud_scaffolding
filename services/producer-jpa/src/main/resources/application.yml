@@ -1,0 +1,60 @@
+server:
+  port: 9002
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server-one:8761/eureka/
+
+spring:
+  application:
+    name: producer-jpa
+  rabbitmq:
+    host: 192.168.113.15
+    port: 5672
+    virtualHost: /spring_cloud_test
+    username: spring-cloud
+    password: 3nodcomcn
+  redis:
+    host: 192.168.113.15
+    port: 6379
+    password: 0098a9c3caee7c545b36a521aaa7eef4@3nod
+  datasource:
+    url: jdbc:postgresql://192.168.107.241:5432/test
+    username: test
+    password: test
+    driver-class-name: org.postgresql.Driver
+  boot:
+    admin:
+      url: http://${BOOT_ADMIN_HOST:localhost}:${BOOT_ADMIN_PORT:8022}
+  #zipkin:
+    #base-url: http://localhost:9411/
+  #sleuth:
+    #sampler:
+      #probability: 1
+  mvc:
+    throw-exception-if-no-handler-found: true
+  servlet:
+    multipart:
+      max-request-size: "2MB"
+      max-file-size: "2MB"
+  jackson:
+    time-zone: GMT+8
+  #jpa:
+    #show-sql: true
+    #generate-ddl: true
+
+logging:
+  level:
+    org.springframework.web: debug
+    org.springframework.data: debug
+    java.sql.PreparedStatement: debug
+  path: logs/
+  file:
+    max-size: 1GB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
